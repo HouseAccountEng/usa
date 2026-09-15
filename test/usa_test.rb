@@ -27,6 +27,15 @@ class USATest < ActiveSupport::TestCase
     assert_equal 'sqlite3', USA::Record.connection_db_config.adapter
   end
 
+  test 'a model answers by the word a host means, whatever the table underneath is called' do
+    zip = USA::ZIP.model_name
+    assert_equal %w[zip zips zip], [ zip.param_key, zip.route_key, zip.element ]
+    assert_equal :zip, zip.i18n_key
+
+    assert_equal %w[state county city], [ USA::State, USA::County, USA::City ].
+      map { |model| model.model_name.param_key }
+  end
+
 private
 
   def counts

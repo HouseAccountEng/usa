@@ -11,6 +11,9 @@ class USA::ZIP < USA::Record
   # @return [String] the default representation (used in views).
   def to_s = code
 
+  # The name Rails reads off this model: its route, its param key, its partial, its key.
+  def self.model_name = ActiveModel::Name.new(self, nil, 'ZIP')
+
   class << self
   private
 

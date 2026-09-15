@@ -12,7 +12,7 @@ To install on your system, run
 
 To use inside a bundled Ruby project, add this line to the `Gemfile`:
 
-    gem 'usa', '~> 0.2.0'
+    gem 'usa', '~> 0.3.0'
 
 Below 1.0 the pin stops at the next minor rather than the next major, because that is where a
 breaking change may still land. It becomes `~> 1.0` once the API is settled on purpose.
@@ -87,6 +87,11 @@ nothing about:
 ```ruby
 ActiveSupport.on_load(:usa_record) { connects_to database: { writing: :primary, reading: :reader } }
 ```
+
+Each model answers by the word you mean rather than by the table under it, so a page listing
+ZIPs writes `zips_path`, a form posts `zip[...]`, a partial lives at `zips/_row` and a locale
+key reads `zip` -- while the table stays `usa_zips`. A gem that resolves a model from a route
+finds it without being told.
 
 Columns of your own go on these tables in a migration of your own. They survive every seed: this
 gem writes only the columns it ships.

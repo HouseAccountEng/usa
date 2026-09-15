@@ -7,6 +7,14 @@ For more information about changelogs, check [Keep a Changelog](http://keepachan
 
 ## [Unreleased]
 
+## 0.3.0 - 2026-09-14
+
+* [Feature] Every model answers by the word a host means rather than by the table under it:
+  `zips_path`, `zip[...]`, `zips/_row`, and the i18n key `zip`, while the table stays
+  `usa_zips`. Same for a state, a county and a city. A host that lists these records writes
+  what it would have written for a model of its own, and a gem that resolves a model from a
+  route -- recourse does -- finds it without being told
+
 ## 0.2.0 - 2026-09-14
 
 * [Feature] `google_place_id` filled for every state and ZIP, and for the twenty counties that
