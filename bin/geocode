@@ -1,0 +1,41 @@
+#!/usr/bin/env ruby
+# Fills the blank google_place_id of one seed CSV from the Google Geocoding API, and rewrites
+# the file. The maintainer's, run by hand between releases, and not packaged with the gem.
+#
+#     GOOGLE_MAPS_API_KEY=... bin/geocode db/seeds/states.csv
+#
+# Only blank cells are asked for, so a run that stops halfway is resumed by running it again.
+
+require 'csv'
+require 'json'
+require 'open-uri'
+
+path = ARGV.first or abort 'Usage: bin/geocode db/seeds/<name>.csv'
+key = ENV['GOOGLE_MAPS_API_KEY'] or abort 'GOOGLE_MAPS_API_KEY is not set'
+
+seeds = File.dirname path
+states = CSV.readlines("#{seeds}/states.csv", headers: true).
+  to_h { |row| [ row['code'], row['name'] ] }
+rows = CSV.readlines path, headers: true
+
+# What each kind of row is called on a map: a ZIP by its code, everything else by name and state.
+address_of = lambda do |row|
+  next "#{row['code']}, USA" if row.headers.include? 'code'
+
+  [ row['name'], states.fetch(row['state'], row['state']), 'USA' ].join ', '
+end
+
+save = -> { CSV.open(path, 'w') { |csv| csv << rows.headers; rows.each { |one| csv << one } } }
+
+rows.each_with_index do |row, index|
+  next unless row['google_place_id'].to_s.empty?
+
+  address = address_of.call row
+  uri = URI 'https://maps.googleapis.com/maps/api/geocode/json'
+  uri.query = URI.encode_www_form address:, components: 'country:US', key:
+  row['google_place_id'] = JSON(uri.read).dig 'results', 0, 'place_id'
+  warn "#{index}/#{rows.size} #{address} -> #{row['google_place_id']}"
+  save.call if (index % 100).zero?
+end
+
+save.call

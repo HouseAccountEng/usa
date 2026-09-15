@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+bundle install
+bin/rake db:setup
+bin/rake app:db:usa:seed
+bin/rake db:test:prepare

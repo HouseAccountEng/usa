@@ -1,0 +1,11 @@
+/.bundle/
+/doc/
+/log/*.log
+/pkg/
+/tmp/
+*.gem
+coverage/
+Gemfile.lock
+/test/dummy/db/*.sqlite3
+/test/dummy/log/*.log
+/test/dummy/tmp/

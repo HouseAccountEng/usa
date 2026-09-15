@@ -1,0 +1,5 @@
+Rails.application.configure do
+  config.enable_reloading = true
+  config.eager_load = false
+  config.active_support.deprecation = :log
+end
