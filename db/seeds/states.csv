@@ -1,52 +1,52 @@
 code,fips,name,google_place_id
-AL,01,Alabama,
-AK,02,Alaska,
-AZ,04,Arizona,
-AR,05,Arkansas,
-CA,06,California,
-CO,08,Colorado,
-CT,09,Connecticut,
-DE,10,Delaware,
+AL,01,Alabama,ChIJdf5LHzR_hogR6czIUzU0VV4
+AK,02,Alaska,ChIJG8CuwJzfAFQRNduKqSde27w
+AZ,04,Arizona,ChIJaxhMy-sIK4cRcc3Bf7EnOUI
+AR,05,Arkansas,ChIJYSc_dD-e0ocR0NLf_z5pBaQ
+CA,06,California,ChIJPV4oX_65j4ARVW8IJ6IJUYs
+CO,08,Colorado,ChIJt1YYm3QUQIcR_6eQSTGDVMc
+CT,09,Connecticut,ChIJpVER8hFT5okR5XBhBVttmq4
+DE,10,Delaware,ChIJO9YMTXYFx4kReOgEjBItHZQ
 DC,11,District of Columbia,
-FL,12,Florida,
-GA,13,Georgia,
-HI,15,Hawaii,
-ID,16,Idaho,
-IL,17,Illinois,
-IN,18,Indiana,
-IA,19,Iowa,
-KS,20,Kansas,
-KY,21,Kentucky,
-LA,22,Louisiana,
-ME,23,Maine,
-MD,24,Maryland,
-MA,25,Massachusetts,
-MI,26,Michigan,
-MN,27,Minnesota,
-MS,28,Mississippi,
-MO,29,Missouri,
-MT,30,Montana,
-NE,31,Nebraska,
-NV,32,Nevada,
-NH,33,New Hampshire,
-NJ,34,New Jersey,
-NM,35,New Mexico,
-NY,36,New York,
-NC,37,North Carolina,
-ND,38,North Dakota,
-OH,39,Ohio,
-OK,40,Oklahoma,
-OR,41,Oregon,
-PA,42,Pennsylvania,
-RI,44,Rhode Island,
-SC,45,South Carolina,
-SD,46,South Dakota,
-TN,47,Tennessee,
-TX,48,Texas,
-UT,49,Utah,
-VT,50,Vermont,
-VA,51,Virginia,
-WA,53,Washington,
-WV,54,West Virginia,
-WI,55,Wisconsin,
-WY,56,Wyoming,
+FL,12,Florida,ChIJvypWkWV2wYgR0E7HW9MTLvc
+GA,13,Georgia,ChIJV4FfHcU28YgR5xBP7BC8hGY
+HI,15,Hawaii,ChIJBeB5Twbb_3sRKIbMdNKCd0s
+ID,16,Idaho,ChIJ6Znkhaj_WFMRWIf3FQUwa9A
+IL,17,Illinois,ChIJGSZubzgtC4gRVlkRZFCCFX8
+IN,18,Indiana,ChIJHRv42bxQa4gRcuwyy84vEH4
+IA,19,Iowa,ChIJGWD48W9e7ocR2VnHV0pj78Y
+KS,20,Kansas,ChIJawF8cXEXo4cRXwk-S6m0wmg
+KY,21,Kentucky,ChIJyVMZi0xzQogR_N_MxU5vH3c
+LA,22,Louisiana,ChIJZYIRslSkIIYRA0flgTL3Vck
+ME,23,Maine,ChIJ1YpTHd4dsEwR0KggZ2_MedY
+MD,24,Maryland,ChIJ35Dx6etNtokRsfZVdmU3r_I
+MA,25,Massachusetts,ChIJ_b9z6W1l44kRHA2DVTbQxkU
+MI,26,Michigan,ChIJEQTKxz2qTE0Rs8liellI3Zc
+MN,27,Minnesota,ChIJmwt4YJpbWE0RD6L-EJvJogI
+MS,28,Mississippi,ChIJGdRK5OQyKIYR2qbc6X8XDWI
+MO,29,Missouri,ChIJfeMiSNXmwIcRcr1mBFnEW7U
+MT,30,Montana,ChIJ04p7LZwrQVMRGGwqz1jWcfU
+NE,31,Nebraska,ChIJ7fwMtciNk4cRxArzDwyQJ6E
+NV,32,Nevada,ChIJcbTe-KEKmYARs5X8qooDR88
+NH,33,New Hampshire,ChIJ66bAnUtEs0wR64CmJa8CyNc
+NJ,34,New Jersey,ChIJn0AAnpX7wIkRjW0_-Ad70iw
+NM,35,New Mexico,ChIJqVKY50NQGIcRup41Yxpuv0Y
+NY,36,New York,ChIJqaUj8fBLzEwRZ5UY3sHGz90
+NC,37,North Carolina,ChIJgRo4_MQfVIgRGa4i6fUwP60
+ND,38,North Dakota,ChIJY-nYVxKD11IRyc9egzmahA0
+OH,39,Ohio,ChIJwY5NtXrpNogRFtmfnDlkzeU
+OK,40,Oklahoma,ChIJnU-ssRE5rIcRSOoKQDPPHF0
+OR,41,Oregon,ChIJVWqfm3xuk1QRdrgLettlTH0
+PA,42,Pennsylvania,ChIJieUyHiaALYgRPbQiUEchRsI
+RI,44,Rhode Island,ChIJD9cOYhQ15IkR5wbB57wYTh4
+SC,45,South Carolina,ChIJ49ExeWml-IgRnhcF9TKh_7k
+SD,46,South Dakota,ChIJpTjphS1DfYcRt6SGMSnW8Ac
+TN,47,Tennessee,ChIJA8-XniNLYYgRVpGBpcEgPgM
+TX,48,Texas,ChIJSTKCCzZwQIYRPN4IGI8c6xY
+UT,49,Utah,ChIJzfkTj8drTIcRP0bXbKVK370
+VT,50,Vermont,ChIJ_87aSGzctEwRtGtUNnSJTSY
+VA,51,Virginia,ChIJzbK8vXDWTIgRlaZGt0lBTsA
+WA,53,Washington,ChIJ-bDD5__lhVQRuvNfbGh4QpQ
+WV,54,West Virginia,ChIJRQnL1KVUSogRQzrN3mjHALs
+WI,55,Wisconsin,ChIJr-OEkw_0qFIR1kmG-LjV1fI
+WY,56,Wyoming,ChIJaS7hSDTiXocRLzh90nkisCY

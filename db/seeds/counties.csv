@@ -71,27 +71,27 @@ fips,name,state,google_place_id
 02020,Anchorage Municipality,AK,ChIJQT-zBHaRyFYR42iEp1q6fSU
 02050,Bethel Census Area,AK,ChIJAzKaLtLCIVcR4HXf_qNNZmk
 02060,Bristol Bay Borough,AK,ChIJq3q39fef6FYRobLPUAsGQ0M
-02063,Chugach Census Area,AK,
-02066,Copper River Census Area,AK,
+02063,Chugach Census Area,AK,ChIJj3x8PXcFt1YRvz112p0TjA8
+02066,Copper River Census Area,AK,ChIJNRl_BvShtVYRDC6rbhNVxac
 02068,Denali Borough,AK,ChIJOTWQqX-pzVYRqwYRa_-9avw
 02070,Dillingham Census Area,AK,ChIJM-YORS8B3lYRZd4u0HiMW1g
 02090,Fairbanks North Star Borough,AK,ChIJh1hyQyV_M1ERYrNgULUBLpA
 02100,Haines Borough,AK,ChIJp6hr9o3pAVQRR7I8MzKIRgQ
-02105,Hoonah-Angoon Census Area,AK,
+02105,Hoonah-Angoon Census Area,AK,ChIJjY64IlEKAVQR07LV-Nz07zE
 02110,Juneau City and Borough,AK,ChIJjzpqb2zeAFQREfNprlryXgY
 02122,Kenai Peninsula Borough,AK,ChIJFfW41gNZwVYRamRfTxj0RdY
 02130,Ketchikan Gateway Borough,AK,ChIJBc4nwh-fDlQRwEQtwhZU1CI
 02150,Kodiak Island Borough,AK,ChIJ84Wen1SV61YR2LqkcZiadvc
-02158,Kusilvak Census Area,AK,
+02158,Kusilvak Census Area,AK,ChIJW4RSG5ZoJFcR2-oeYuGVuRQ
 02164,Lake and Peninsula Borough,AK,ChIJI26TK2JC6FYR2uVT9p4NXxo
 02170,Matanuska-Susitna Borough,AK,ChIJxT0fZPkfzFYReC4g704O-_c
 02180,Nome Census Area,AK,ChIJ6ftI2sg4MVcRD6MakZY-GXk
 02185,North Slope Borough,AK,ChIJB9NjWeWd2VARx-Cy8uG2nZc
 02188,Northwest Arctic Borough,AK,ChIJM3vtHzeW01ARVYqgadp2wpI
-02195,Petersburg Borough,AK,
-02198,Prince of Wales-Hyder Census Area,AK,
+02195,Petersburg Borough,AK,ChIJgy8SV5WrCFQRvJYQwir9fe4
+02198,Prince of Wales-Hyder Census Area,AK,ChIJ4auid4_RDlQR-_YKUHqQ1ow
 02220,Sitka City and Borough,AK,ChIJuWN1b4NmBFQRdBzIn0jaQSU
-02230,Skagway Municipality,AK,
+02230,Skagway Municipality,AK,ChIJfW5sY0WsqlYRfXwDxtKQkQs
 02240,Southeast Fairbanks Census Area,AK,ChIJc2MxnobtNFERV6pifSHbErk
 02275,Wrangell City and Borough,AK,
 02282,Yakutat City and Borough,AK,ChIJAz4GIST0qVYRyXlvZrEutfo
@@ -308,15 +308,15 @@ fips,name,state,google_place_id
 08121,Washington County,CO,ChIJwYuR4ZYUcocRubogihL3NfM
 08123,Weld County,CO,ChIJCxObk9oHbIcR-vkuHPq7yHk
 08125,Yuma County,CO,ChIJUZ28w7WYc4cRsoMbAMMbpPI
-09110,Capitol Planning Region,CT,
-09120,Greater Bridgeport Planning Region,CT,
-09130,Lower Connecticut River Valley Planning Region,CT,
-09140,Naugatuck Valley Planning Region,CT,
-09150,Northeastern Connecticut Planning Region,CT,
-09160,Northwest Hills Planning Region,CT,
-09170,South Central Connecticut Planning Region,CT,
-09180,Southeastern Connecticut Planning Region,CT,
-09190,Western Connecticut Planning Region,CT,
+09110,Capitol Planning Region,CT,ChIJl-MOLQBY5okR6480TjQjz4g
+09120,Greater Bridgeport Planning Region,CT,ChIJmw39AgAM6IkR6Ht8FMVjupk
+09130,Lower Connecticut River Valley Planning Region,CT,ChIJkd9vzko_5okRika6BRb2IdE
+09140,Naugatuck Valley Planning Region,CT,ChIJWSHbHnbC54kR2OExZzZYylk
+09150,Northeastern Connecticut Planning Region,CT,ChIJ0WI6CgB-5okRiQ0i_jB7hvQ
+09160,Northwest Hills Planning Region,CT,ChIJTXQpLgCQ54kRsqipRm3_14Q
+09170,South Central Connecticut Planning Region,CT,ChIJo9cWXl_X54kR3Fpv2_9vbKA
+09180,Southeastern Connecticut Planning Region,CT,ChIJuUHEXlUN5okRq-4ChOdVbrI
+09190,Western Connecticut Planning Region,CT,ChIJCQEpgQAC6IkRXEsiSRn1fXA
 10001,Kent County,DE,ChIJ04r5Mk5hx4kRANs7LoMEe3U
 10003,New Castle County,DE,ChIJh7_kg3Ybx4kR6L5mDoWESqw
 10005,Sussex County,DE,ChIJaWUVnA-PuIkRzxJPFm9RUIg
@@ -363,7 +363,7 @@ fips,name,state,google_place_id
 12081,Manatee County,FL,ChIJO3wisEEuw4gRJkeIhpCVu-Q
 12083,Marion County,FL,ChIJaQaVRVXQ54gRCht5zsSwoNI
 12085,Martin County,FL,ChIJ-V-yPH7H3ogRstggZi-Szls
-12086,Miami-Dade County,FL,
+12086,Miami-Dade County,FL,ChIJORjpTQWL2YgRi2OVgXQeaUk
 12087,Monroe County,FL,ChIJmxojnNyG2ogRIGAhTf-Tm3I
 12089,Nassau County,FL,ChIJqbrwpti85YgRwPnj3RzwMuE
 12091,Okaloosa County,FL,ChIJ3dz0mGtskYgRHAGiUBwb5GI
@@ -2413,7 +2413,7 @@ fips,name,state,google_place_id
 46097,Miner County,SD,ChIJET6yKJaPiIcR_-3Xqb8s5AI
 46099,Minnehaha County,SD,ChIJ16y94Ji0jocRbXLuf-gRGrM
 46101,Moody County,SD,ChIJyfcp4yFyiYcRip4nIKymrG0
-46102,Oglala Lakota County,SD,
+46102,Oglala Lakota County,SD,ChIJf7HEaFo8fIcRJ5KdPjGv22o
 46103,Pennington County,SD,ChIJqR63oBhrfYcRKx7-WHYCfB8
 46105,Perkins County,SD,ChIJQZh5Hx9WKVMRY9wjd9dF4Pc
 46107,Potter County,SD,ChIJ2VErWScA1VIRlFg5X-OFRAw

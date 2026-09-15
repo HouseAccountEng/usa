@@ -58,8 +58,11 @@ A state has a `code`, a `fips` and a `name`. A county has a `fips`, a `name` and
 has a `fips` -- a Census place code, unique within its state rather than nationally -- a `name`,
 a state, and the one or more counties it lies in, since a city may cross a county line. A ZIP has
 a `code`, the `city` it is addressed as, a `time_zone` named as Rails names one, and one county.
-Every one of the four also has a `google_place_id`, filled for counties and blank elsewhere until
-a release fills it.
+Every one of the four also has a `google_place_id`, the ID Google gives the place, which is what
+draws a table of them as a map. It is filled for every state, county and ZIP that Google keeps
+as an area of its kind, and blank for the few it keeps only as a city -- the District of
+Columbia, Broomfield County, Wrangell -- for the ZIPs it folds into a neighbor's, and for every
+city until a release fills them.
 
 Two counter caches are kept by the seed rather than by a callback: `usa_states.counties_count`
 and `usa_counties.zips_count`.

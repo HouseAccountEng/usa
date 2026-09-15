@@ -2,9 +2,13 @@
 # Fills the blank google_place_id of one seed CSV from the Google Geocoding API, and rewrites
 # the file. The maintainer's, run by hand between releases, and not packaged with the gem.
 #
-#     GOOGLE_MAPS_API_KEY=... bin/geocode db/seeds/states.csv
+#     GOOGLE_MAPS_API_KEY=... bin/geocode db/seeds/zips.csv
+#     GOOGLE_MAPS_API_KEY=... LIMIT=500 bin/geocode db/seeds/zips.csv
 #
-# Only blank cells are asked for, so a run that stops halfway is resumed by running it again.
+# Only blank cells are asked for, so a run that stops halfway is resumed by running it again,
+# and LIMIT asks for that many of them and no more. A cell is filled only where Google answers
+# with a place of the kind the row is -- a postal code for a ZIP, a county for a county -- and
+# every other answer goes to log/geocode-<name>.log for a second look.
 
 require 'csv'
 require 'json'
@@ -14,28 +18,101 @@ path = ARGV.first or abort 'Usage: bin/geocode db/seeds/<name>.csv'
 key = ENV['GOOGLE_MAPS_API_KEY'] or abort 'GOOGLE_MAPS_API_KEY is not set'
 
 seeds = File.dirname path
-states = CSV.readlines("#{seeds}/states.csv", headers: true).
-  to_h { |row| [ row['code'], row['name'] ] }
 rows = CSV.readlines path, headers: true
-
-# What each kind of row is called on a map: a ZIP by its code, everything else by name and state.
-address_of = lambda do |row|
-  next "#{row['code']}, USA" if row.headers.include? 'code'
-
-  [ row['name'], states.fetch(row['state'], row['state']), 'USA' ].join ', '
+names = lambda do |file, by|
+  CSV.readlines("#{seeds}/#{file}.csv", headers: true).to_h { |row| [ row[by], row['name'] ] }
 end
+states = names.call 'states', 'code'
+counties = names.call 'counties', 'fips' if rows.headers.include? 'counties'
+
+# Which kind of row this file holds, read off its headers, and the kind of place it has to be.
+kind, expected =
+  if rows.headers.include? 'time_zone' then [ :zip, 'postal_code' ]
+  elsif rows.headers.include? 'counties' then [ :city, 'locality' ]
+  elsif rows.headers.include? 'state' then [ :county, 'administrative_area_level_2' ]
+  else [ :state, 'administrative_area_level_1' ]
+  end
+
+# What a row asks Google for: the components that pin it down, never a free-text address. A
+# city carries the first county it lies in, since a state can hold two places of one name;
+# asked again, it goes without the county, and a state goes by its code -- `New York` alone is
+# the city to Google, and `NY` the state.
+components = lambda do |row, first|
+  parts =
+    case kind
+      when :zip then [ "postal_code:#{row['code']}" ]
+      when :state then [ "administrative_area:#{first ? row['name'] : row['code']}" ]
+      when :county
+        [ "administrative_area:#{row['name']}", "administrative_area:#{states.fetch row['state']}" ]
+      when :city
+        county = counties.fetch row['counties'].split.first if first
+        [ "locality:#{row['name']}", county && "administrative_area:#{county}",
+          "administrative_area:#{states.fetch row['state']}", ].compact
+    end
+  [ *parts, 'country:US' ].join '|'
+end
+
+# One request, waited out where Google says to slow down and tried again where the network
+# dropped it, as the parsed body -- or as the error, where three tries were not enough.
+geocode = lambda do |query|
+  uri = URI 'https://maps.googleapis.com/maps/api/geocode/json'
+  uri.query = URI.encode_www_form components: query, key: key
+  tries = 0
+  loop do
+    body = JSON(uri.read)
+    return body unless body['status'] == 'OVER_QUERY_LIMIT'
+
+    sleep 2
+  rescue Net::OpenTimeout, Net::ReadTimeout, OpenURI::HTTPError, SocketError => error
+    return { 'status' => error.class.name, 'results' => [] } if (tries += 1) == 3
+
+    sleep 2
+  end
+end
+
+# The place Google answers with, where it is a whole place of the right kind, and what it
+# answered where it is not.
+answer = lambda do |body|
+  found = body['results'].find { |one| one['types'].include?(expected) && !one['partial_match'] }
+  kinds = body['results'].map { |one| one['types'].join '/' }
+
+  [ found&.dig('place_id'), [ body['status'], *kinds ].join(' ') ]
+end
+
+lookup = lambda do |row|
+  id, note = answer.call geocode.call(components.call(row, true))
+  id, note = answer.call geocode.call(components.call(row, false)) if id.nil? && kind != :zip
+  [ id, note ]
+end
+
+pending = rows.each_with_index.select { |row, _| row['google_place_id'].to_s.empty? }
+pending = pending.first Integer(ENV['LIMIT']) if ENV['LIMIT']
+queue = Queue.new
+pending.each { |pair| queue << pair }
+queue.close
 
 save = -> { CSV.open(path, 'w') { |csv| csv << rows.headers; rows.each { |one| csv << one } } }
+misses = []
+done = 0
+mutex = Mutex.new
 
-rows.each_with_index do |row, index|
-  next unless row['google_place_id'].to_s.empty?
-
-  address = address_of.call row
-  uri = URI 'https://maps.googleapis.com/maps/api/geocode/json'
-  uri.query = URI.encode_www_form address:, components: 'country:US', key:
-  row['google_place_id'] = JSON(uri.read).dig 'results', 0, 'place_id'
-  warn "#{index}/#{rows.size} #{address} -> #{row['google_place_id']}"
-  save.call if (index % 100).zero?
-end
+8.times.map do
+  Thread.new do
+    while (pair = queue.pop)
+      row, index = pair
+      id, note = lookup.call row
+      mutex.synchronize do
+        row['google_place_id'] = id
+        misses << "#{index + 1},#{row.fields.first(3).join(',')} -> #{note}" unless id
+        done += 1
+        warn "#{done}/#{pending.size} #{row.fields.first(2).join(' ')} -> #{id || note}"
+        save.call if (done % 500).zero?
+      end
+    end
+  end
+end.each(&:join)
 
 save.call
+Dir.mkdir 'log' unless Dir.exist? 'log'
+File.write "log/geocode-#{File.basename path, '.csv'}.log", misses.join("\n") + "\n"
+warn "#{pending.size - misses.size} filled, #{misses.size} left blank (see log/)"

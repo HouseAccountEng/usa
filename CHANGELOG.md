@@ -7,6 +7,15 @@ For more information about changelogs, check [Keep a Changelog](http://keepachan
 
 ## [Unreleased]
 
+* [Feature] `google_place_id` filled for every state and ZIP, and for the twenty counties that
+  were blank: 50 of 51 states, 3,142 of 3,144 counties and 40,818 of 40,977 ZIPs, each the ID of
+  a place of the row's own kind, asked of the Geocoding API by component rather than by address
+  -- a state by its name and then its code, a county by its name and state, a ZIP by its code.
+  What stays blank is what Google has no such place for: the District of Columbia, Broomfield
+  County and Wrangell, which it keeps as cities, and 159 ZIPs it folds into a neighbor's. Cities
+  wait for a run of their own. `bin/geocode` is what fills a file, eight requests at a time,
+  taking only an answer of the right kind and logging the rest
+
 ## 0.1.0 - 2026-09-14
 
 * [Feature] `USA::State`, `USA::County` and `USA::ZIP`, on `usa_states`, `usa_counties` and
