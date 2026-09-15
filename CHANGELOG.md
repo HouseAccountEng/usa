@@ -7,6 +7,8 @@ For more information about changelogs, check [Keep a Changelog](http://keepachan
 
 ## [Unreleased]
 
+## 0.2.0 - 2026-09-14
+
 * [Feature] `google_place_id` filled for every state and ZIP, and for the twenty counties that
   were blank: 50 of 51 states, 3,142 of 3,144 counties and 40,818 of 40,977 ZIPs, each the ID of
   a place of the row's own kind, asked of the Geocoding API by component rather than by address
