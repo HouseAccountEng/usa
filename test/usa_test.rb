@@ -1,4 +1,5 @@
 require 'test_helper'
+require 'tmpdir'
 
 # What seeding leaves behind, asked of the wiring rather than of the rows: which row the CSVs
 # happen to hold is data, and data exercises no code of ours.
@@ -42,11 +43,15 @@ class USATest < ActiveSupport::TestCase
   end
 
   test 'a host that has taken one of these names is told rather than quietly shadowing it' do
-    assert_nil USA.verify_models(State, County, City, CityCounty, ZIP)
+    assert_nil USA.verify_models
 
-    error = assert_raises(USA::Error) { USA.verify_models State, String }
+    Dir.mktmpdir do |dir|
+      File.write File.join(dir, 'zip.rb'), "class ZIP\nend\n"
 
-    assert_match 'The usa gem defines String', error.message
+      error = assert_raises(USA::Error) { USA.verify_models [ dir ] }
+
+      assert_match 'The usa gem defines ZIP', error.message
+    end
   end
 
 private

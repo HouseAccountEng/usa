@@ -34,18 +34,24 @@ module USA
     County.recount_zips
   end
 
+  # The file each of this gem's models is defined in, which is the name a host must not take.
+  MODELS = %w[city city_county county state zip]
+
   # Refuses a host's own class standing where one of this gem's models should be. Zeitwerk
   # gives an app's file precedence over an engine's, silently, so without this a host holding
   # `app/models/city.rb` would find every association of this gem's pointing at a class of its
-  # own.
-  # @param [Array<Class>] models the classes the names this gem takes answer to.
+  # own. Asked of the files rather than of the constants: loading a model to find out pulls
+  # Active Record in with it, long before an app is ready for either.
+  # @param [Array<String>] dirs the autoloaded directories to look through.
   # @return [void]
-  def self.verify_models(*models)
-    theirs = models.reject { |model| model < Record }
-    return if theirs.empty?
+  def self.verify_models(dirs = Rails.autoloaders.main.dirs)
+    mine = Engine.root.join('app/models').to_s
+    taken = dirs.reject { |dir| dir == mine }.
+      flat_map { |dir| MODELS.select { |model| File.exist? File.join(dir, "#{model}.rb") } }
+    return if taken.empty?
 
-    raise Error, "The usa gem defines #{theirs.to_sentence}, and a class of your own has " \
-      'taken the name. Rename yours: Rails gives an app’s file precedence over an engine’s, ' \
-      'silently, so the models this gem ships would point at a class it knows nothing about.'
+    raise Error, "The usa gem defines #{taken.uniq.map(&:camelize).to_sentence}, and a file " \
+      'of your own takes the name first. Rename yours: Rails gives an app’s file precedence ' \
+      'over an engine’s, silently, and the models this gem ships would point at your class.'
   end
 end

@@ -7,6 +7,16 @@ For more information about changelogs, check [Keep a Changelog](http://keepachan
 
 ## [Unreleased]
 
+## 0.4.2 - 2026-09-16
+
+* [Fix] The check that refuses a host's own class where one of these models should be asks the
+  files rather than the constants, and loads nothing to answer. 0.4.1 moved it onto
+  `ActiveSupport.on_load(:active_record)`, which fires long before an app is ready: a host whose
+  own load hook declares `belongs_to :market, counter_cache: true` had that class name resolved
+  on the spot, which reached `ApplicationRecord` before the database was configured and stopped
+  the boot. Zeitwerk is asked which directory holds a `city.rb` instead, which answers the same
+  question without loading a model or Active Record behind it
+
 ## 0.4.1 - 2026-09-16
 
 * [Fix] The check that refuses a host's own class where one of these models should be is asked
