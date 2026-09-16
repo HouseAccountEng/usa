@@ -7,6 +7,13 @@ For more information about changelogs, check [Keep a Changelog](http://keepachan
 
 ## [Unreleased]
 
+* [Feature] `google_place_id` filled for the last three rows that had none: the District of
+  Columbia, Broomfield County and Wrangell City and Borough. 0.2.0 read their blank as Google
+  having no place of the row's own kind, since a component lookup for each answers with the city
+  standing where the state or the county should. Google does hold all three, reachable the other
+  way around: reverse geocoding a point inside one, asked for `administrative_area_level_1` or
+  `_2`, names the place. Every state and every county now carries an ID
+
 ## 0.4.2 - 2026-09-16
 
 * [Fix] The check that refuses a host's own class where one of these models should be asks the

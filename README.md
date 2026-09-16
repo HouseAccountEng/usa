@@ -70,10 +70,8 @@ city is the exception, keeping every county it lies in, which is why `city.count
 more than one.
 
 Every one of the four also has a `google_place_id`, the ID Google gives the place, which is what
-draws a table of them as a map. It is filled for every state, county and ZIP that Google keeps
-as an area of its kind, and blank for the few it keeps only as a city -- the District of
-Columbia, Broomfield County, Wrangell -- for the ZIPs it folds into a neighbor's, and for every
-city until a release fills them.
+draws a table of them as a map. It is filled for every state and every county, and blank for the
+ZIPs Google folds into a neighbor's and for every city until a release fills them.
 
 Two counter caches are kept by the seed rather than by a callback: `states.counties_count` and
 `counties.zips_count`.
