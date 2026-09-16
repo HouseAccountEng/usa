@@ -7,6 +7,8 @@ For more information about changelogs, check [Keep a Changelog](http://keepachan
 
 ## [Unreleased]
 
+## 0.5.0 - 2026-09-16
+
 * [Feature] `google_place_id` filled for the last three rows that had none: the District of
   Columbia, Broomfield County and Wrangell City and Borough. 0.2.0 read their blank as Google
   having no place of the row's own kind, since a component lookup for each answers with the city
